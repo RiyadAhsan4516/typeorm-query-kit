@@ -1,0 +1,38 @@
+{
+  "name": "typeorm-query-kit",
+  "version": "1.0.0",
+  "description": "A powerful query parser for TypeORM with filtering, sorting, pagination, and relation support",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "typeorm",
+    "query",
+    "parser",
+    "filter",
+    "sort",
+    "pagination",
+    "api"
+  ],
+  "author": "Riyad Ahsan",
+  "license": "MIT",
+  "peerDependencies": {
+    "express": "^4.0.0",
+    "typeorm": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist/**/*"
+  ]
+}
