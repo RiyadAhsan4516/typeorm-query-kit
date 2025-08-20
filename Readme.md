@@ -204,21 +204,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- 📚 [Documentation](https://github.com/your-username/typeorm-query-kit/wiki)
-- 🐛 [Report Bugs](https://github.com/your-username/typeorm-query-kit/issues)
-- 💡 [Request Features](https://github.com/your-username/typeorm-query-kit/issues)
-- ❓ [Questions & Discussions](https://github.com/your-username/typeorm-query-kit/discussions)
+- 📚 [Documentation](https://github.com/RiyadAhsan4516/typeorm-query-kit/wiki)
+- 🐛 [Report Bugs](https://github.com/RiyadAhsan4516/typeorm-query-kit/issues)
+- 💡 [Request Features](https://github.com/RiyadAhsan4516/typeorm-query-kit/issues)
+- ❓ [Questions & Discussions](https://github.com/RiyadAhsan4516/typeorm-query-kit/pulse)
 
 ## 🏆 Credits
 
-Made with ❤️ by [Your Name]
+Made with ❤️ by [Riyad Ahsan]
 
 ---
 
 **Ready to work some magic?** ✨
 
 ```bash
-npm install typeorm-query-kit
+npm install @riyad_ahsan/typeorm-query-kit
 ```
 
 Transform your API queries from mundane to magical today!
