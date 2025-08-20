@@ -1,5 +1,5 @@
 {
-  "name": "typeorm-query-kit",
+  "name": "@riyad_ahsan/typeorm-query-kit",
   "version": "1.0.0",
   "description": "A powerful query parser for TypeORM with filtering, sorting, pagination, and relation support",
   "main": "dist/index.js",
