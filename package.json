@@ -20,6 +20,11 @@
   ],
   "author": "Riyad Ahsan",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/RiyadAhsan4516/typeorm-query-kit.git"
+  },
+  "homepage": "https://github.com/RiyadAhsan4516/typeorm-query-kit.git#readme",
   "peerDependencies": {
     "express": "^4.0.0",
     "typeorm": "^0.3.0"
