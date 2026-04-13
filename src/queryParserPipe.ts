@@ -1,35 +1,25 @@
-namespace QueryParserTypes {
-    export interface QuerySort {
-        field: string;
-        order: 'ASC' | 'DESC';
-    }
-
-    export interface QueryRange {
-        [field: string]: {
-            gt?: number;
-            gte?: number;
-            lt?: number;
-            lte?: number;
+export class QueryParserPipe {
+    parse(query: any): {
+        filter: {
+            [field: string]: any;
         };
-    }
-
-    export interface QueryFilter {
-        [field: string]: any;
-    }
-
-    export interface QueryOptions {
-        filter: QueryFilter;
-        range: QueryRange;
-        sort?: QuerySort[];
+        range: {
+            [field: string]: {
+                gt?: number;
+                gte?: number;
+                lt?: number;
+                lte?: number;
+            };
+        };
+        sort?: {
+            field: string;
+            order: 'ASC' | 'DESC';
+        }[];
         page: number;
         limit: number;
         relations: string[];
         config?: any;
-    }
-}
-
-export class QueryParserPipe {
-    parse(query: any): QueryParserTypes.QueryOptions {
+    } {
         const { filter, range, sort, page, limit, relations } = query;
 
         return {
@@ -89,7 +79,14 @@ export class QueryParserPipe {
     }
 
     // ---------- Range -------------
-    private parseRange(range: any): QueryParserTypes.QueryRange {
+    private parseRange(range: any): {
+        [field: string]: {
+            gt?: number;
+            gte?: number;
+            lt?: number;
+            lte?: number;
+        };
+    } {
         if (!range) return {};
 
         try {
@@ -132,14 +129,20 @@ export class QueryParserPipe {
     }
 
     // ---------- Sort -------------
-    private parseSort(sort: any): QueryParserTypes.QuerySort[] | undefined {
+    private parseSort(sort: any): {
+        field: string;
+        order: 'ASC' | 'DESC';
+    }[] | undefined {
         if (!sort) return undefined;
 
         try {
             const sortParsed = typeof sort === 'string' ? JSON.parse(sort) : sort;
             const sortArray = Array.isArray(sortParsed) ? sortParsed : [sortParsed];
 
-            return sortArray.map((s): QueryParserTypes.QuerySort => {
+            return sortArray.map((s): {
+                field: string;
+                order: 'ASC' | 'DESC';
+            } => {
                 if (!s.field || typeof s.field !== 'string') {
                     throw new Error(
                         'Sort field is required and must be a string',
