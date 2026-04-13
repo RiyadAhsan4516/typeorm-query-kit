@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QueryParser = void 0;
-class QueryParser {
+exports.QueryParserPipe = void 0;
+class QueryParserPipe {
     parse(query) {
         const { filter, range, sort, page, limit, relations } = query;
         return {
@@ -146,4 +146,4 @@ class QueryParser {
         return [];
     }
 }
-exports.QueryParser = QueryParser;
+exports.QueryParserPipe = QueryParserPipe;

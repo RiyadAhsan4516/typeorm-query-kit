@@ -24,7 +24,7 @@ declare namespace QueryParserTypes {
         config?: any;
     }
 }
-export declare class QueryParser {
+export declare class QueryParserPipe {
     parse(query: any): QueryParserTypes.QueryOptions;
     private parseFilter;
     private validateFilter;
