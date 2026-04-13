@@ -2,7 +2,7 @@ import { queryParser } from '../src';
 import { Request, Response, NextFunction } from 'express';
 
 describe('Query Parser', () => {
-    let mockRequest : Partial<Request>;
+    let mockRequest: Partial<Request>;
     let mockResponse: Partial<Response>;
     let nextFunction: NextFunction = jest.fn();
 
