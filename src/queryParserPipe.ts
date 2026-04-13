@@ -28,7 +28,7 @@ namespace QueryParserTypes {
     }
 }
 
-export class QueryParser {
+export class QueryParserPipe {
     parse(query: any): QueryParserTypes.QueryOptions {
         const { filter, range, sort, page, limit, relations } = query;
 
