@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
-A powerful, intuitive query parser middleware that transforms simple HTTP queries into complex TypeORM queries. Filter, sort, paginate, and include relations with elegant query parameters.
+A powerful query parsing helper for TypeORM APIs that works with both Express and NestJS. Use `queryParser` as Express middleware or wrap `QueryParserPipe` inside a NestJS pipe, then apply the parsed options to your TypeORM query builder.
 
 ## ✨ Features
 
@@ -58,6 +58,48 @@ app.get('/users', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+```
+
+## NestJS Usage
+
+Create a NestJS pipe that delegates parsing to `QueryParserPipe`, then use that pipe in your controller.
+
+```typescript
+import { Injectable, PipeTransform } from '@nestjs/common';
+import { QueryParserPipe } from 'typeorm-query-kit/dist/queryParserPipe';
+
+@Injectable()
+export class TypeOrmQueryPipe implements PipeTransform {
+  private readonly parser = new QueryParserPipe();
+
+  transform(value: any) {
+    return this.parser.parse(value);
+  }
+}
+```
+
+```typescript
+import { Controller, Get, Query } from '@nestjs/common';
+import { applyQueryOptions } from 'typeorm-query-kit';
+import { TypeOrmQueryPipe } from './typeorm-query.pipe';
+import { User } from './entities/User';
+
+@Controller('users')
+export class UserController {
+  @Get()
+  async findAll(@Query(TypeOrmQueryPipe) queryOptions: any) {
+    const queryBuilder = this.userRepository.createQueryBuilder('user');
+    const qb = await applyQueryOptions(queryBuilder, 'user', queryOptions);
+    const [users, total] = await qb.getManyAndCount();
+
+    return {
+      data: users,
+      total,
+      page: queryOptions.page,
+      limit: queryOptions.limit,
+    };
+  }
+}
 ```
 
 ## 🎯 Usage Examples
@@ -118,6 +160,10 @@ Parses incoming query parameters and attaches a `queryOptions` object to the req
 app.use(queryParser);
 // Now req.queryOptions is available in your routes
 ```
+
+### `QueryParserPipe`
+
+Use `QueryParserPipe` inside a custom NestJS pipe when you want the same parsing behavior in Nest controllers.
 
 ### `applyQueryOptions(queryBuilder, baseAlias, options, config?)`
 
