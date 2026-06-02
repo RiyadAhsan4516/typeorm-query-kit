@@ -263,10 +263,10 @@ export async function transformParams(params: any) {
     // Parse JSON strings and convert page/limit to numbers
     const page = Number(params.page) || 1;
     const limit = Number(params.limit) || 10;
-    const filter = params.filter ? JSON.parse(params.filter) : {};
-    const sort = params.sort ? JSON.parse(params.sort) : undefined;
-    const range = params.range ? JSON.parse(params.range) : {};
-    const relations = params.relations ? JSON.parse(params.relations) : [];
+    const filter = params?.filter ? JSON.parse(params.filter) : {};
+    const sort = params?.sort ? JSON.parse(params.sort) : undefined;
+    const range = params?.range ? JSON.parse(params.range) : {};
+    const relations = params?.relations ? JSON.parse(params.relations) : [];
 
     return {page, limit, filter, range, sort, relations};
 }
