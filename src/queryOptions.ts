@@ -259,7 +259,7 @@ function isFieldSearchable(alias: string, fieldName: string, config?: EntityQuer
     return config[alias]?.[fieldName]?.searchable !== false;
 }
 
-async function transformParams(params: any) {
+export async function transformParams(params: any) {
     const page = Number(params.page) || 1;
     const limit = Number(params.limit) || 10;
 

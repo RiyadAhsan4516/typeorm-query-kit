@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.applyQueryOptions = applyQueryOptions;
-exports.transformParams = transformParams;
 // Global param counter for generating unique keys
 let paramCounter = 0;
 /**
@@ -173,12 +172,27 @@ function isFieldSearchable(alias, fieldName, config) {
     return config[alias]?.[fieldName]?.searchable !== false;
 }
 async function transformParams(params) {
-    // Parse JSON strings and convert page/limit to numbers
     const page = Number(params.page) || 1;
     const limit = Number(params.limit) || 10;
-    const filter = params?.filter ? JSON.parse(params.filter) : {};
-    const sort = params?.sort ? JSON.parse(params.sort) : undefined;
-    const range = params?.range ? JSON.parse(params.range) : {};
-    const relations = params?.relations ? JSON.parse(params.relations) : [];
-    return { page, limit, filter, range, sort, relations };
+    const parseIfString = (value, fallback) => {
+        if (value === undefined || value === null) {
+            return fallback;
+        }
+        if (typeof value === "string") {
+            return JSON.parse(value);
+        }
+        return value;
+    };
+    const filter = parseIfString(params.filter, {});
+    const sort = parseIfString(params.sort, undefined);
+    const range = parseIfString(params.range, {});
+    const relations = parseIfString(params.relations, []);
+    return {
+        page,
+        limit,
+        filter,
+        range,
+        sort,
+        relations,
+    };
 }
