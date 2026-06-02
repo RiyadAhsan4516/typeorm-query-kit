@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.applyQueryOptions = applyQueryOptions;
+exports.transformParams = transformParams;
 // Global param counter for generating unique keys
 let paramCounter = 0;
 /**

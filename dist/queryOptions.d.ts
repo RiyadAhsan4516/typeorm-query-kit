@@ -30,4 +30,12 @@ interface EntityQueryConfig {
  * Dynamically applies filtering, ranges, sorting, pagination with validation
  */
 export declare function applyQueryOptions<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, baseAlias: string, options: QueryOptions<T>, config?: EntityQueryConfig): Promise<SelectQueryBuilder<T>>;
+export declare function transformParams(params: any): Promise<{
+    page: number;
+    limit: number;
+    filter: any;
+    range: any;
+    sort: any;
+    relations: any;
+}>;
 export {};
