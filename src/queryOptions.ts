@@ -259,14 +259,33 @@ function isFieldSearchable(alias: string, fieldName: string, config?: EntityQuer
     return config[alias]?.[fieldName]?.searchable !== false;
 }
 
-export async function transformParams(params: any) {
-    // Parse JSON strings and convert page/limit to numbers
+async function transformParams(params: any) {
     const page = Number(params.page) || 1;
     const limit = Number(params.limit) || 10;
-    const filter = params?.filter ? JSON.parse(params.filter) : {};
-    const sort = params?.sort ? JSON.parse(params.sort) : undefined;
-    const range = params?.range ? JSON.parse(params.range) : {};
-    const relations = params?.relations ? JSON.parse(params.relations) : [];
 
-    return {page, limit, filter, range, sort, relations};
+    const parseIfString = (value: any, fallback: any) => {
+        if (value === undefined || value === null) {
+            return fallback;
+        }
+
+        if (typeof value === "string") {
+            return JSON.parse(value);
+        }
+
+        return value;
+    };
+
+    const filter = parseIfString(params.filter, {});
+    const sort = parseIfString(params.sort, undefined);
+    const range = parseIfString(params.range, {});
+    const relations = parseIfString(params.relations, []);
+
+    return {
+        page,
+        limit,
+        filter,
+        range,
+        sort,
+        relations,
+    };
 }
