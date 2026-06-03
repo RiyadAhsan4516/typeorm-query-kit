@@ -1,6 +1,6 @@
 {
   "name": "@riyad_ahsan/typeorm-query-kit",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A powerful query parser for TypeORM with filtering, sorting, pagination, and relation support",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,12 +25,8 @@
     "url": "https://github.com/RiyadAhsan4516/typeorm-query-kit.git"
   },
   "homepage": "https://github.com/RiyadAhsan4516/typeorm-query-kit.git#readme",
-  "peerDependencies": {
-    "express": "^4.0.0",
-    "typeorm": "^0.3.0"
-  },
   "devDependencies": {
-    "@types/express": "^5.0.3",
+    "@types/express": "^5.0.6",
     "@types/jest": "^29.0.0",
     "@types/node": "^20.0.0",
     "jest": "^29.0.0",
@@ -39,5 +35,9 @@
   },
   "files": [
     "dist/**/*"
-  ]
+  ],
+  "dependencies": {
+    "express": "^5.2.1",
+    "typeorm": "^0.3.30"
+  }
 }
